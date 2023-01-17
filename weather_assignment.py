@@ -39,7 +39,16 @@ from csv import DictReader
 
 # print(relative_monthly_precipitation)
 
-# part 3 + bonus
+# results = dict()
+# seattle_results = dict()
+# seattle_results["station"]="GHCND:US1WAKG0038"
+# seattle_results["state"]="WA"
+# seattle_results["total_monthly_precipitation"]=total_monthly_precipitation
+# seattle_results["total_yearly_precipitation"]=total_yearly_precipitation
+# seattle_results["relative_monthly_precipitation"]=relative_monthly_precipitation
+# results["Seattle"] = seattle_results
+
+# part 3
 
 with open('stations.csv', encoding='utf-8') as file:
     stations = list(DictReader(file))
@@ -77,7 +86,7 @@ for station in stations:
         total_yearly_precipitation += month_precipitation
     # calculating the relative monthly precipitation per location
     relative_monthly_precipitation = []
-    for i in range(12):
+    for i in range(1,13):
         relative_monthly_precipitation.append(total_monthly_precipitation[i-1]/total_yearly_precipitation)
     # calculating the relative yearly precipitation
     relative_yearly_precipitation = total_yearly_precipitation/all_yearly_precipitation
@@ -92,17 +101,6 @@ for station in stations:
     results[f'{location}'] = location_results
 
 # print(results)
-
-# bonus
-
-# results = dict()
-# seattle_results = dict()
-# seattle_results["station"]="GHCND:US1WAKG0038"
-# seattle_results["state"]="WA"
-# seattle_results["total_monthly_precipitation"]=total_monthly_precipitation
-# seattle_results["total_yearly_precipitation"]=total_yearly_precipitation
-# seattle_results["relative_monthly_precipitation"]=relative_monthly_precipitation
-# results["Seattle"] = seattle_results
 
 with open('results.json', 'w', encoding = 'utf-8') as file:
     json.dump(results, file, indent=4)
