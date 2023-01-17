@@ -19,4 +19,8 @@ for measurement in seattle:
     else:
         total_monthly_precipitation[measurement['month']-1][measurement['month']] += measurement['value']
 
+with open('seattle_monthly_results.json', 'w', encoding = 'utf-8') as file:
+    json.dump(total_monthly_precipitation, file, indent=4)
+    
+    
 print(total_monthly_precipitation)
